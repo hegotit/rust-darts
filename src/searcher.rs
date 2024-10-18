@@ -14,6 +14,7 @@ impl DoubleArrayTrie {
 #[derive(Copy, Clone, Eq, PartialEq, Debug)]
 pub enum SearchStep {
     Match(usize, usize),
+    Incomplete(usize, usize),
     Reject(usize, usize),
 }
 
@@ -75,7 +76,7 @@ impl<'a, 'b> Iterator for DoubleArrayTrieSearcher<'a, 'b> {
         if b == check[p] && n < 0 {
             Some(SearchStep::Match(start_pos, self.start_pos))
         } else {
-            Some(SearchStep::Reject(start_pos, self.start_pos))
+            Some(SearchStep::Incomplete(start_pos, self.start_pos))
         }
     }
 }
@@ -88,6 +89,7 @@ mod tests {
     fn search_step_to_str(step: &SearchStep, haystack: &str) -> String {
         match *step {
             SearchStep::Match(start, end) => format!("{}/n", &haystack[start..end]),
+            SearchStep::Incomplete(start, end) => format!("{}/p", &haystack[start..end]),
             SearchStep::Reject(start, end) => format!("{}/x", &haystack[start..end]),
         }
     }
