@@ -4,8 +4,6 @@ extern crate darts;
 extern crate hashbrown;
 extern crate lazy_static;
 
-use darts::searcher;
-
 use criterion::Criterion;
 use darts::DoubleArrayTrie;
 use hashbrown::HashMap;
@@ -101,7 +99,7 @@ fn bench_dat_searcher() {
     let mut searcher = DA.search(&text);
     loop {
         let step = searcher.next();
-        if step == searcher::SearchStep::Done {
+        if step.is_none() {
             break;
         }
     }
