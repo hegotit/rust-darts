@@ -72,15 +72,11 @@ fn bench_hashbrown_prefix_search() {
 }
 
 fn bench_dat_match_found() {
-    DA.exact_match_search(
-        "我是拖拉机学院手扶拖拉机专业的。不用多久，我就会升职加薪，当上CEO，走上人生巅峰。",
-    );
+    DA.exact_match_search("我是拖拉机学院手扶拖拉机专业的。不用多久，我就会升职加薪，当上CEO，走上人生巅峰。");
 }
 
 fn bench_hashbrown_match_found() {
-    HASHMAP.contains_key(
-        "我是拖拉机学院手扶拖拉机专业的。不用多久，我就会升职加薪，当上CEO，走上人生巅峰。",
-    );
+    HASHMAP.contains_key("我是拖拉机学院手扶拖拉机专业的。不用多久，我就会升职加薪，当上CEO，走上人生巅峰。");
 }
 
 fn bench_dat_match_not_found_slow_fail() {
