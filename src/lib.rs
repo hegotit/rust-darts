@@ -723,6 +723,7 @@ mod tests {
         assert_eq!(result2, vec!["网", "网球", "网球拍"]);
     }
 
+    #[cfg(feature = "serialization")]
     #[test]
     fn test_dat_prefix_iter() {
         let mut f = File::open("./priv/dict.big.bincode").unwrap();
